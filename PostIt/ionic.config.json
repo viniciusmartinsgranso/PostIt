@@ -1,0 +1,7 @@
+{
+  "name": "PostIt",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
