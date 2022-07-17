@@ -3,13 +3,14 @@
 
   <img class="detail" src="assets/images/quadriculado.svg">
   <div class="container">
-    <img src="assets/images/LOGO.svg">
+    <app-logo
+    [src]="'assets/images/LOGO.svg'"></app-logo>
 
     <div class="container--inputs">
       <span>E-mail</span>
-      <input type="text" [(ngModel)]="loginPayload.email">
+      <input type="text" class="input-login" [(ngModel)]="loginPayload.email">
       <span>Senha</span>
-      <input type="password" [(ngModel)]="loginPayload.password">
+      <input type="password" class="input-login" [(ngModel)]="loginPayload.password">
     </div>
 
     <ion-button class="button" [class.disabled]="!canLogin()" (click)="login()" >
