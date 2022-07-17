@@ -1,15 +1,15 @@
 .background {
+  width: 100%;
   height: 40vh;
   object-fit: cover;
 }
 
 .detail {
   position: absolute;
-  top: 0;
+  top: -20px;
   left: 0;
   width: 100vw;
   height: 100vh;
-  transform: translateY(-20px);
 }
 
 .container {
@@ -19,13 +19,16 @@
 
   background-color: #ffffff;
   border-radius: 28px 28px 0 0;
-  height: 70vh;
+  height: 75vh;
   transform: translateY(-60px);
 
   img {
     width: 22%;
     height: 30%;
-    object-fit: contain;
+
+    @media screen and (min-width:1000px) {
+      width: 10%;
+    }
   }
   span {
     color: #707070;
@@ -77,4 +80,13 @@
       text-decoration: none;
     }
   }
+}
+
+.disabled {
+  opacity: .5;
+  pointer-events: none;
+}
+
+app-half-circle-spinner {
+  margin-left: 1rem;
 }
