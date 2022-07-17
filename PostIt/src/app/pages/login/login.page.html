@@ -4,7 +4,7 @@
   <img class="detail" src="assets/images/quadriculado.svg">
   <div class="container">
     <app-logo
-    [src]="'assets/images/LOGO.svg'"></app-logo>
+    [src]="'assets/images/LOGO.svg'" [full]="false" (onClick)="logoClick($event)" ></app-logo>
 
     <div class="container--inputs">
       <span>E-mail</span>
