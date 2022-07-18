@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
 import { LoginPayload } from '../../models/payloads/login.payload';
 import { HelperService } from '../../services/helper.service';
 
