@@ -8,9 +8,17 @@
 }
 
 .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
   width: 90%;
   height: 4rem;
   background: white;
   box-shadow: 0 0 9px #00000029;
   border-radius: 33px;
+
+  &--item {
+
+  }
 }
