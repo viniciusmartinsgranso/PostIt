@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { NavbarEnum } from '../../models/enum/navbar.enum';
+import { NavbarItemInterface } from '../../models/interfaces/navbar-item.interface';
 
 @Component({
   selector: 'app-navbar',
@@ -37,6 +38,27 @@ export class NavbarComponent   {
   public routeSubscription: Subscription;
 
   public currentNavbar: NavbarEnum = NavbarEnum.HOME;
+
+  public navbarList: NavbarItemInterface[] = [
+    {
+      type: NavbarEnum.FEED,
+      link: '/feed',
+      icon: 'assets/images/navbar-feed.svg',
+      iconActivated: 'assets/images/navbar-feed-selected.svg',
+    },
+    {
+      type: NavbarEnum.HOME,
+      link: '/home',
+      icon: 'assets/images/navbar-home.svg',
+      iconActivated: 'assets/images/navbar-home-selected.svg',
+    },
+    {
+      type: NavbarEnum.PROFILE,
+      link: '/profile',
+      icon: 'assets/images/navbar-profile.svg',
+      iconActivated: 'assets/images/navbar-profile-selected.svg',
+    }
+  ];
 
 
 }

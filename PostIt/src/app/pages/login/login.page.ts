@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginPayload } from '../../models/payloads/login.payload';
 import { HelperService } from '../../services/helper.service';
 
@@ -11,6 +12,7 @@ export class LoginPage {
 
   constructor(
     private readonly helperService: HelperService,
+    private readonly router: Router,
   ) { }
 
   public loginPayload: LoginPayload = {
@@ -19,6 +21,8 @@ export class LoginPage {
   };
 
   public isLoading: boolean = false;
+
+  public isSignAccount: boolean = false;
 
   public async login(): Promise<void> {
     if (!this.canLogin()) return;
@@ -38,6 +42,8 @@ export class LoginPage {
         handler: () => console.log('Tentar'),
       },
     ]);
+
+    await this.router.navigateByUrl('/home');
   }
 
   public canLogin(): boolean {
