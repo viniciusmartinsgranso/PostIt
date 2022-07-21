@@ -14,61 +14,81 @@
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: absolute;
+  bottom: 0;
+  height: 65vh;
+  width: 100%;
+  transition: height 1s ease;
 
   background-color: #ffffff;
   border-radius: 28px 28px 0 0;
-  height: 75vh;
-  transform: translateY(-60px);
 
-  app-logo {
-    width: 22%;
-    height: 30%;
-
-    @media screen and (min-width:1000px) {
-      width: 10%;
-    }
-  }
-  span {
-    color: #707070;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: .5rem;
-    font-style: italic;
-    font-size: .95rem;
-    opacity: .6;
-    padding-left: 1rem;
-  }
-
-  input {
-    border: 1px solid #707070;
-    background: transparent;
-    outline: 0;
-    border-radius: 20px;
-    margin-bottom: 1rem;
-    padding: .95rem;
-    color: black;
-    opacity: .6;
-  }
-
-  &--inputs {
+  &--login {
     display: flex;
     flex-direction: column;
-    width: 80%;
-  }
+    align-items: center;
+    height: 100%;
 
-  p {
-    color: #707070;
-    margin-top: 2rem;
-    font-size: .85rem;
+    app-logo {
+      width: 22%;
+      height: 30%;
 
-    a {
-      color: #2D9FDB;
-      text-decoration: none;
+      @media screen and (min-width: 1000px) {
+        width: 10%;
+      }
+    }
+
+    &--inputs {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+    }
+
+    p {
+      color: #707070;
+      margin-top: 2rem;
+      font-size: .85rem;
+
+      a {
+        color: #2D9FDB;
+        text-decoration: none;
+      }
     }
   }
+
+
+  &--sign {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 2rem 0 2rem;
+
+    &--upside {
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      app-logo {
+        height: 60%;
+        margin-left: 2rem;
+      }
+    }
+
+    p {
+      color: #707070;
+      font-size: .85rem;
+      font-weight: bold;
+    }
+
+    ion-button {
+      width: 100%;
+      height: 3.5rem;
+      margin-bottom: 4rem;
+    }
+  }
+
 }
 
 .disabled {
@@ -78,4 +98,32 @@
 
 app-half-circle-spinner {
   margin-left: 1rem;
+}
+
+span {
+  color: #707070;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: .5rem;
+  font-style: italic;
+  font-size: .95rem;
+  opacity: .6;
+  padding-left: 1rem;
+  width: 100%;
+}
+
+input {
+  border: 1px solid #707070;
+  background: transparent;
+  outline: 0;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  padding: .95rem;
+  color: black;
+  opacity: .6;
+  width: 100%;
+}
+
+.container-open {
+  height: 90vh;
 }

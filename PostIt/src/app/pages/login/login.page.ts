@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginPayload } from '../../models/payloads/login.payload';
+import { RegisterPayload } from '../../models/payloads/register.payload';
 import { HelperService } from '../../services/helper.service';
 
 @Component({
@@ -18,6 +19,14 @@ export class LoginPage {
   public loginPayload: LoginPayload = {
     email: '',
     password: '',
+  };
+
+  public registerPayload: RegisterPayload = {
+    name: '',
+    email: '',
+    confirmEmail: '',
+    password: '',
+    confirmPassword: '',
   };
 
   public isLoading: boolean = false;
