@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { PostItColorEnum } from '../../../models/enum/post-it-color.enum';
 import { PostItPayload } from '../../../models/payloads/post-it.payload';
-import { PostItProxy } from '../../../models/proxies/post-it.proxy';
 
 @Component({
   selector: 'app-post-it-modal',
@@ -32,6 +31,7 @@ export class PostItModalComponent implements OnInit {
   public ngOnInit() {
     if (!this.color)
       this.color = this.postIt.color;
+
     console.log(this.postIt);
   }
 

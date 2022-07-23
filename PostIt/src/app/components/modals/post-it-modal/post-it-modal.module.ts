@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
 import { PostItModalComponent } from './post-it-modal.component';
 
 
@@ -11,7 +12,8 @@ import { PostItModalComponent } from './post-it-modal.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    IonicModule,
   ],
   exports: [
     PostItModalComponent

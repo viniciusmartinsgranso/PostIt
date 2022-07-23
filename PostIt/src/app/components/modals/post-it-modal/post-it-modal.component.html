@@ -1,5 +1,19 @@
 <div class="modal-post-it" [style.background]="color">
-  <span class="modal-post-it--close" (click)="modalController.dismiss()">X</span>
+  <span *ngIf="create" class="modal-post-it--close" (click)="modalController.dismiss()">X</span>
+
+  <span *ngIf="!create" class="modal-post-it--options" id="left-start">...</span>
+  <ion-popover trigger="left-start" side="left" alignment="start" [dismissOnSelect]="true">
+    <ng-template>
+      <ion-content class="ion-padding modal-post-it--options-box">
+        <ion-list>
+          <ion-item button="true" detail="false" (click)="create = true">Editar</ion-item>
+          <ion-item button="true" detail="false">Publicar no feed</ion-item>
+          <ion-item button="true" detail="false">Excluir nota</ion-item>
+          <ion-item button="true" detail="false" (click)="modalController.dismiss()">Fechar nota</ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
 
   <header>
     <input [readOnly]="!create"
