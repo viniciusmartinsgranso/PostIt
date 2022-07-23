@@ -59,7 +59,7 @@ export class LoginPage implements OnInit {
       },
     ]);
 
-    await this.router.navigateByUrl('/home');
+    await this.router.navigate(['/home']);
   }
 
   public async register(): Promise<void> {

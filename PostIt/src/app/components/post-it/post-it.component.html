@@ -1,4 +1,4 @@
-<div class="post-it" [style.background]="postIt.color">
+<div class="post-it" [style.background]="postIt.color" (click)="onClickCard()">
   <header>
     <h6>{{postIt.title}}</h6>
   </header>

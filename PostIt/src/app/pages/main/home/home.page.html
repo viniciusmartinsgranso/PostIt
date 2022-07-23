@@ -6,17 +6,18 @@
   <main>
     <ng-container *ngFor="let postIt of postItList">
       <app-post-it
+        (postItSelected)="printOutput($event)"
         [postIt]="postIt"
       ></app-post-it>
     </ng-container>
   </main>
 
   <div class="home--new-post-it">
-    <div class="home--new-post-it--item"></div>
-    <div class="home--new-post-it--item"></div>
-    <div class="home--new-post-it--item"></div>
-    <div class="home--new-post-it--item"></div>
-    <div class="home--new-post-it--item"></div>
-    <div class="home--new-post-it--item"></div>
+    <div class="home--new-post-it--item" [style.background]="colorEnum.ORANGE" (click)="getColor(colorEnum.ORANGE)"></div>
+    <div class="home--new-post-it--item" [style.background]="colorEnum.ROSE" (click)="getColor(colorEnum.ROSE)"></div>
+    <div class="home--new-post-it--item" [style.background]="colorEnum.GREEN" (click)="getColor(colorEnum.GREEN)"></div>
+    <div class="home--new-post-it--item" [style.background]="colorEnum.YELLOW" (click)="getColor(colorEnum.YELLOW)"></div>
+    <div class="home--new-post-it--item" [style.background]="colorEnum.BLUE" (click)="getColor(colorEnum.BLUE)"></div>
+    <div class="home--new-post-it--item" [style.background]="colorEnum.PURPLE" (click)="getColor(colorEnum.PURPLE)"></div>
   </div>
 </div>
