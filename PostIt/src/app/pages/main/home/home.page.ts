@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { PostItModalComponent } from '../../../components/modals/post-it-modal/post-it-modal.component';
 import { PostItColorEnum } from '../../../models/enum/post-it-color.enum';
 import { PostItProxy } from '../../../models/proxies/post-it.proxy';
 
@@ -9,7 +11,9 @@ import { PostItProxy } from '../../../models/proxies/post-it.proxy';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private readonly modalController: ModalController,
+  ) { }
 
   public postItList: PostItProxy[] = [
     {
@@ -56,12 +60,42 @@ export class HomePage implements OnInit {
     console.log(this.colorEnum);
   }
 
-  public getColor(color: string): void {
-    console.log(color);
+  public printOutput(event: PostItProxy): void {
+    console.log('printout');
   }
 
-  public printOutput(event: PostItProxy): void {
-    console.log(event);
+  public async openNewPostItModal(color: string): Promise<void> {
+    const modal = await this.modalController.create({
+      mode: 'ios',
+      component: PostItModalComponent,
+      componentProps:{ color, create: true },
+      cssClass: 'background-modal',
+      showBackdrop: false,
+    });
+    await modal.present();
+
+    modal.onDidDismiss().then(async ({ data: postIt }) => {
+      if (postIt) {
+        this.postItList.push(postIt);
+      }
+    });
+  }
+
+  public async openPostItModal(postIt: PostItProxy): Promise<void> {
+    const modal = await this.modalController.create({
+      component: PostItModalComponent,
+      cssClass: 'background-modal',
+      componentProps: {
+        postIt
+      }
+    });
+
+    await modal.present();
+
+    modal.onDidDismiss().then(async ({ data: postIt }) => {
+      console.log('postIt', postIt);
+      console.log('postItArray', this.postItList);
+    });
   }
 
 }

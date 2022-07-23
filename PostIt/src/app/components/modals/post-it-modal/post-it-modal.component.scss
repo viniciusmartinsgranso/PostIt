@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-post-it {
+  position: relative;
+  width: 90vw;
+  height: 60vh;
+  padding: 2rem;
+  color: #343434;
+
+  &--close {
+    position: absolute;
+    right: 1rem;
+  }
+
+  &--title {
+    font-size: 1.5rem;
+
+    border: none;
+    background-color: transparent;
+    outline: none;
+  }
+
+  &--annotation {
+    font-size: .9rem;
+
+    border: none;
+    background-color: transparent;
+    outline: none;
+    min-height: 40vh;
+    resize: none;
+  }
+
+  footer {
+    text-align: center;
+
+    span {
+      color: #707070;
+      font-style: italic;
+      font-weight: 600;
+    }
+  }
+}

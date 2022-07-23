@@ -1,8 +1,8 @@
 import { PostItColorEnum } from '../enum/post-it-color.enum';
 
-export interface PostItProxy {
-  id: number;
+export interface PostItPayload {
   title: string;
   annotation: string;
   color: PostItColorEnum;
+  id?: number;
 }

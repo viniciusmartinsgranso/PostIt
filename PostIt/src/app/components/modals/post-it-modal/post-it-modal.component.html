@@ -1,0 +1,22 @@
+<div class="modal-post-it" [style.background]="color">
+  <span class="modal-post-it--close" (click)="modalController.dismiss()">X</span>
+
+  <header>
+    <input [readOnly]="!create"
+           class="modal-post-it--title"
+           type="text"
+           [(ngModel)]="postIt.title"
+           placeholder="Título da nota">
+  </header>
+
+  <main>
+    <textarea [readOnly]="!create"
+              class="modal-post-it--annotation"
+              [(ngModel)]="postIt.annotation"
+              placeholder="Inserir anotações aqui"></textarea>
+  </main>
+
+  <footer>
+    <span (click)="sendPostIt()">Colar no Mural</span>
+  </footer>
+</div>
