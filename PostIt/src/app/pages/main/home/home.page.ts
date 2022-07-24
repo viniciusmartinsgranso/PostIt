@@ -68,7 +68,7 @@ export class HomePage implements OnInit {
     const modal = await this.modalController.create({
       mode: 'ios',
       component: PostItModalComponent,
-      componentProps:{ color, create: true },
+      componentProps: { color, create: true },
       cssClass: 'background-modal',
       showBackdrop: false,
     });
@@ -86,15 +86,17 @@ export class HomePage implements OnInit {
       component: PostItModalComponent,
       cssClass: 'background-modal',
       componentProps: {
-        postIt
-      }
+        postIt,
+      },
     });
 
     await modal.present();
 
-    modal.onDidDismiss().then(async ({ data: postIt }) => {
-      console.log('postIt', postIt);
-      console.log('postItArray', this.postItList);
+    modal.onDidDismiss().then(async ({ data }) => {
+      console.log(data);
+      if (data.isDeleted) {
+        this.postItList = this.postItList.filter(post => post.id !== data.postIt.id);
+      }
     });
   }
 

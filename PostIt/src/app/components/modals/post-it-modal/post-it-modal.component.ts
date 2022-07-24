@@ -41,4 +41,12 @@ export class PostItModalComponent implements OnInit {
     await this.modalController.dismiss(this.postIt);
   }
 
+  public async deletePostIt(): Promise<void> {
+    await this.modalController.dismiss({ postIt: this.postIt, isDeleted: true });
+  }
+
+  public async closeModal(): Promise<void> {
+    await this.modalController.dismiss({ isDeleted: false });
+  }
+
 }
