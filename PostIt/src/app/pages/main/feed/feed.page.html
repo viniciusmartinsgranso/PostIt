@@ -1,9 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>feed</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="feed">
+  <img class="detail" src="assets/images/quadriculado.svg">
 
-<ion-content>
+  <header>
+    <img class="note-and-friends" src="assets/images/logo-feed.svg">
+  </header>
 
-</ion-content>
+  <main>
+    <ng-container *ngFor="let post of postItList">
+      <div class="feed-item">
+      <app-feed-item
+      [postIt]="post">
+      </app-feed-item>
+      </div>
+    </ng-container>
+  </main>
+</div>
