@@ -9,7 +9,7 @@
     </span>
       <span class="user-info--cargo">Economista</span>
     </div>
-    <button class="read-more" type="button">Ler mais+</button>
+    <button class="read-more" type="button" [routerLink]="['/feed', postIt.id]">Ler mais+</button>
   </header>
 
   <main>
@@ -27,7 +27,7 @@
       <button type="button">Publicar</button>
     </div>
     <div class="actions-section">
-      <img src="assets/images/comment-icon.svg">
+      <img src="assets/images/comment-icon.svg" [routerLink]="['/feed', postIt.id]">
       <ng-container *ngIf="!isLiked else liked">
         <img src="assets/images/like-icon.svg" (click)="isLiked = !isLiked">
       </ng-container>

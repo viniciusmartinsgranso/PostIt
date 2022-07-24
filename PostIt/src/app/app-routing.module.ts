@@ -24,6 +24,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/main/profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
+    path: 'feed/:id',
+    loadChildren: () => import('./pages/main/feed-detail/feed-detail.module').then(m => m.FeedDetailPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'login',
     pathMatch: 'full'

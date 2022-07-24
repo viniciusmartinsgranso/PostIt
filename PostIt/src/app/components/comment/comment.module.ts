@@ -1,22 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { FeedItemComponent } from './feed-item.component';
+import { CommentComponent } from './comment.component';
 
 
 
 @NgModule({
   declarations: [
-    FeedItemComponent
+    CommentComponent
   ],
   imports: [
     CommonModule,
     IonicModule,
-    RouterModule
   ],
   exports: [
-    FeedItemComponent
+    CommentComponent
   ]
 })
-export class FeedItemModule { }
+export class CommentModule { }
