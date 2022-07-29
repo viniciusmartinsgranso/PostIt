@@ -74,9 +74,9 @@ export class HomePage implements OnInit {
     });
     await modal.present();
 
-    modal.onDidDismiss().then(async ({ data: postIt }) => {
-      if (postIt) {
-        this.postItList.push(postIt);
+    modal.onDidDismiss().then(async ({ data }) => {
+      if (data.postIt) {
+        this.postItList.push(data.postIt);
       }
     });
   }

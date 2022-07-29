@@ -1,0 +1,94 @@
+@import url('https://fonts.cdnfonts.com/css/gotham');
+
+ion-content {
+  --background: linear-gradient(90deg, rgba(0,185,255,0.8354692218684349) 16%, rgba(0,247,157,0.8550770650056898) 80%);
+  --overflow: hidden;
+}
+
+.profile {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-image: url("/assets/images/quadriculado.svg");
+  z-index: 1;
+  overflow: auto;
+
+  &--modal {
+    width: 100%;
+    border-radius: 2rem 2rem 0 0;
+    background: white;
+    margin-top: 5rem;
+
+    &--content {
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      font-family: Gotham, sans-serif;
+
+      &--user {
+
+        &--pic {
+          display: flex;
+          justify-content: center;
+          position: relative;
+
+          img {
+            border-radius: 100%;
+            width: 10rem;
+            position: absolute;
+            border: 1rem solid white;
+            top: -6rem;
+          }
+        }
+
+        &--menu {
+          display: flex;
+          justify-content: flex-end;
+
+          img {
+            padding: 1rem;
+          }
+        }
+
+        &--labels {
+          text-align: center;
+          margin-top: 2rem;
+
+          &--name {
+            font-weight: bold;
+            color: black;
+            font-size: 2rem;
+          }
+
+          &--job {
+            color: gray;
+            font-size: 1.1rem;
+            font-weight: bold;
+          }
+        }
+      }
+
+      &--posts {
+
+        &--title {
+          text-align: center;
+          margin: 1.5rem 0;
+          color: black;
+        }
+
+        &--my-posts {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          gap: 3rem;
+
+          app-feed-item {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
