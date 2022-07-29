@@ -26,7 +26,7 @@
       <input type="text" placeholder="Inserir comentário">
       <button type="button">Publicar</button>
     </div>
-    <div class="actions-section">
+    <div class="actions-section" *ngIf="!isMyPost">
       <img src="assets/images/comment-icon.svg" [routerLink]="['/feed', postIt.id]">
       <ng-container *ngIf="!isLiked else liked">
         <img src="assets/images/like-icon.svg" (click)="isLiked = !isLiked">

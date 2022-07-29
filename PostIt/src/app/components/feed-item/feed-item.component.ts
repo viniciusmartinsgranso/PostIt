@@ -13,6 +13,9 @@ export class FeedItemComponent implements OnInit {
   @Input()
   public postIt: PostItProxy;
 
+  @Input()
+  public isMyPost: boolean = false;
+
   public isLiked: boolean = false;
 
   ngOnInit() {

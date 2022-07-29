@@ -21,7 +21,8 @@
           </div>
           <div class="profile--modal--content--posts--my-posts">
             <app-feed-item *ngFor="let posts of postItList"
-                           [postIt]="posts">
+                           [postIt]="posts"
+                           [isMyPost]="true">
             </app-feed-item>
           </div>
         </div>
