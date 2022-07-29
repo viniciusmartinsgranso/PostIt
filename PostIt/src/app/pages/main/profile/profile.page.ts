@@ -55,8 +55,8 @@ export class ProfilePage implements OnInit {
   ];
 
   public user = {
-    photoUrl: 'assets/images/user/bruna.jpg',
-    name: 'Bruna',
+    photoUrl: 'assets/images/user/vini.jpg',
+    name: 'Vini',
     job: 'Developer'
   };
 
@@ -65,7 +65,7 @@ export class ProfilePage implements OnInit {
 
   public async openProfileModal(): Promise<void> {
     const modal = await this.modalController.create({
-      mode: 'ios',
+      mode: 'md',
       component: ProfileModalComponent,
       cssClass: 'background-modal',
     });

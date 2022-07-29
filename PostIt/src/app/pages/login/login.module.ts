@@ -19,5 +19,8 @@ import { LoginPage } from './login.page';
     HalfCircleSpinnerModule,
   ],
   declarations: [LoginPage, LogoComponent],
+  exports: [
+    LogoComponent,
+  ],
 })
 export class LoginPageModule {}
