@@ -3,28 +3,35 @@
     <div class="profile--modal">
       <div class="profile--modal--content">
         <div class="profile--modal--content--user">
+
           <div class="profile--modal--content--user--pic">
             <img [src]="user.photoUrl">
           </div>
+
           <div class="profile--modal--content--user--menu">
             <img src="assets/images/profile-menu-options.svg" (click)="openProfileModal()">
           </div>
+
           <div class="profile--modal--content--user--labels">
             <label class="profile--modal--content--user--labels--name">{{ user.name }}</label>
             <br>
             <label class="profile--modal--content--user--labels--job">{{ user.job }}</label>
           </div>
+
         </div>
+
         <div class="profile--modal--content--posts">
           <div class="profile--modal--content--posts--title">
             <h4 style="font-weight: bold">NOTAS PÚBLICAS</h4>
           </div>
+
           <div class="profile--modal--content--posts--my-posts">
             <app-feed-item *ngFor="let posts of postItList"
                            [postIt]="posts"
                            [isMyPost]="true">
             </app-feed-item>
           </div>
+
         </div>
       </div>
     </div>
