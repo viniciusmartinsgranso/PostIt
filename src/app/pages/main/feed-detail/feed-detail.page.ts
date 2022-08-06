@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostItColorEnum } from '../../../models/enums/post-it-color.enum';
-import { PostItProxy } from '../../../models/proxies/post-it.proxy';
+import { FeedPostItProxy } from '../../../models/proxies/feed-post-it.proxy';
+import { HelperService } from '../../../services/helper.service';
+import { NoteService } from '../../../services/note.service';
 
 @Component({
   selector: 'app-feed-detail',
@@ -13,72 +14,15 @@ export class FeedDetailPage implements OnInit {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
+    private readonly helper: HelperService,
+    private readonly note: NoteService
   ) {
     this.postItId = +this.activatedRoute.snapshot.params.id;
   }
 
-  public postItList: PostItProxy[] = [
-    {
-      id: 0,
-      title: 'Título do Post',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et ex faucibus, semper ipsum non, posuere erat. In ultricies a odio sed laoreet. . Aenean sagittis, magna id rutrum fermentum, orci velit molestie urna, id auctor sem eros vitae tortor.',
-      color: PostItColorEnum.YELLOW,
-      comments: [
-        {
-          comment:'Ótimas dicas Ana. Você faz o uso de algum app de controle financeiro da sua rotina. Já ouviu falar sobre o \'\'Mobills\'\'.Esse aplicativo de controle financeiro funciona de uma maneira simples, funcional e intuitiva. Com ele, você consegue organizar todos seus ganhos e gastos divididos por categorias.',
-        },
-        {
-          comment:'Ótimas dicas Ana. Você faz o uso de algum app de controle financeiro da sua rotina. Já ouviu falar sobre o \'\'Mobills\'\'.Esse aplicativo de controle financeiro funciona de uma maneira simples, funcional e intuitiva. Com ele, você consegue organizar todos seus ganhos e gastos divididos por categorias.',
-        },
-      ],
-    },
-    {
-      id: 1,
-      title: 'Título do Post1',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et ex faucibus, semper ipsum non, posuere erat. In ultricies a odio sed laoreet. . Aenean sagittis, magna id rutrum fermentum, orci velit molestie urna, id auctor sem eros vitae tortor.',
-      color: PostItColorEnum.ROSE,
-      comments: [
-        {
-          comment:'Ótimas dicas Ana. Você faz o uso de algum app de controle financeiro da sua rotina. Já ouviu falar sobre o \'\'Mobills\'\'.Esse aplicativo de controle financeiro funciona de uma maneira simples, funcional e intuitiva. Com ele, você consegue organizar todos seus ganhos e gastos divididos por categorias.',
-        },
-        {
-          comment:'wfuhwe8yfwheufhwef',
-        },
-      ],
-    },
-    {
-      id: 2,
-      title: 'Título do Post2',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et ex faucibus, semper ipsum non, posuere erat. In ultricies a odio sed laoreet. . Aenean sagittis, magna id rutrum fermentum, orci velit molestie urna, id auctor sem eros vitae tortor.',
-      color: PostItColorEnum.GREEN,
-      comments: [],
-    },
-    {
-      id: 3,
-      title: 'Título do Post3',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et ex faucibus, semper ipsum non, posuere erat. In ultricies a odio sed laoreet. . Aenean sagittis, magna id rutrum fermentum, orci velit molestie urna, id auctor sem eros vitae tortor.',
-      color: PostItColorEnum.YELLOW,
-      comments: [],
-    },
-    {
-      id: 4,
-      title: 'Título do Post4',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et ex faucibus, semper ipsum non, posuere erat. In ultricies a odio sed laoreet. . Aenean sagittis, magna id rutrum fermentum, orci velit molestie urna, id auctor sem eros vitae tortor.',
-      color: PostItColorEnum.BLUE,
-      comments: [],
-    },
-    {
-      id: 5,
-      title: 'Título do Post5',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et ex faucibus, semper ipsum non, posuere erat. In ultricies a odio sed laoreet. . Aenean sagittis, magna id rutrum fermentum, orci velit molestie urna, id auctor sem eros vitae tortor.',
-      color: PostItColorEnum.PURPLE,
-      comments: [],
-    },
-  ];
-
-  public postIt: PostItProxy;
-
-  public isLiked: boolean = false;
+  public postIt: FeedPostItProxy;
+  public isLoading: boolean = false;
+  public commentText: string = '';
 
   private postItId: number = 0;
 
@@ -86,12 +30,41 @@ export class FeedDetailPage implements OnInit {
     this.getPostIt();
   }
 
-  public getPostIt(): void {
-    this.postIt = this.postItList.find(post => post.id === this.postItId);
+  public async getPostIt(): Promise<void> {
+    const [postit, message] = await this.note.get(this.postItId);
+
+    if (message) {
+      this.helper.showToast(message, 5_000);
+
+      return void await this.router.navigateByUrl('/feed');
+    }
+
+    this.postIt = postit;
   }
 
-  public async backToFeed(): Promise<void> {
-    await this.router.navigate(['/feed']);
+  public async setLikeToPostIt(): Promise<void> {
+    this.isLoading = true;
+    const [, errorMessage] = await this.note.setLikeOnPostit(this.postIt);
+    this.isLoading = false;
+
+    if (errorMessage)
+      return this.helper.showToast(errorMessage, 5_000);
+
+    this.postIt.hasLiked = !this.postIt.hasLiked;
+  }
+
+  public async sendComment(): Promise<void> {
+    this.isLoading = true;
+    const [comment, errorMessage] = await this.note.sendComment(this.postIt.id, this.commentText);
+    this.isLoading = false;
+
+    if (errorMessage)
+      return this.helper.showToast(errorMessage, 5_000);
+
+    comment.user = this.postIt.user;
+
+    this.commentText = '';
+    this.postIt.comments.push(comment);
   }
 
 }

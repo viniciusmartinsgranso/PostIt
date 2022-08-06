@@ -49,7 +49,7 @@ export class HomePage {
       component: PostItModalComponent,
       componentProps: { color, create: true },
       cssClass: 'background-modal',
-      showBackdrop: false,
+      backdropDismiss: true,
     });
     await modal.present();
 
@@ -64,6 +64,7 @@ export class HomePage {
     const modal = await this.modalController.create({
       component: PostItModalComponent,
       cssClass: 'background-modal',
+      backdropDismiss: true,
       componentProps: {
         postIt,
       },
@@ -72,9 +73,10 @@ export class HomePage {
     await modal.present();
 
     modal.onDidDismiss().then(async ({ data }) => {
-      console.log(data);
       if (data.isDeleted) {
-        this.postItList = this.postItList.filter(post => post.id !== data.postIt.id);
+        this.postItList = this.postItList.filter(
+          (post) => post.id !== data.postit.id
+        );
       }
     });
   }
