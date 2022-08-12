@@ -11,7 +11,6 @@ import { NoteService } from '../../../services/note.service';
   styleUrls: ['./post-it-modal.component.scss'],
 })
 export class PostItModalComponent implements OnInit {
-
   constructor(
     private readonly modalController: ModalController,
     private readonly note: NoteService,
@@ -46,7 +45,9 @@ export class PostItModalComponent implements OnInit {
 
     this.isLoading = true;
 
-    const [postit, message] = this.postIt.id ? await this.note.update(this.postIt) : await this.note.create(this.postIt);
+    const [postit, message] = this.postIt.id
+      ? await this.note.update(this.postIt)
+      : await this.note.create(this.postIt);
 
     this.isLoading = false;
 
@@ -69,7 +70,7 @@ export class PostItModalComponent implements OnInit {
     await this.modalController.dismiss({ postit: this.postIt, isDeleted: true });
   }
 
-  public async sendPostIt(): Promise<void> {
+  public async publishPostIt(): Promise<void> {
     this.isLoading = true;
     const [, message] = await this.note.publish(this.postIt);
     this.isLoading = false;

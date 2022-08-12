@@ -10,7 +10,6 @@ import { NoteService } from '../../../services/note.service';
   styleUrls: ['./feed-detail.page.scss'],
 })
 export class FeedDetailPage implements OnInit {
-
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
@@ -26,8 +25,8 @@ export class FeedDetailPage implements OnInit {
 
   private postItId: number = 0;
 
-  public ngOnInit(): void {
-    this.getPostIt();
+  public async ngOnInit(): Promise<void> {
+    await this.getPostIt();
   }
 
   public async getPostIt(): Promise<void> {

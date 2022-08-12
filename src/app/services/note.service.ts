@@ -15,7 +15,7 @@ export class NoteService {
 
   public async getMyNotes(): Promise<AsyncResult<PostItProxy[]>> {
     const [success, error] = await this.http.get<PostItProxy[]>(
-      apiRoutes.notes.me
+      apiRoutes.notes.me,
     );
 
     if (error) return [[], error.error.message];
@@ -26,7 +26,7 @@ export class NoteService {
   public async create(postIt: PostItPayload): Promise<AsyncResult<PostItProxy>> {
     const [success, error] = await this.http.post<PostItProxy>(
       apiRoutes.notes.create,
-      postIt
+      postIt,
     );
 
     if (error) return [null, error.error.message];
@@ -37,7 +37,7 @@ export class NoteService {
   public async update(postIt: PostItPayload): Promise<AsyncResult<PostItProxy>> {
     const url = apiRoutes.notes.update.replace(
       '{noteId}',
-      postIt.id.toString()
+      postIt.id.toString(),
     );
 
     const [success, error] = await this.http.put<PostItProxy>(url, postIt);
@@ -66,15 +66,20 @@ export class NoteService {
     });
   }
 
-  public async getFeedNotes(): Promise<AsyncResult<FeedPostItProxy[]>> {
-    const [success, error] = await this.http.get<FeedPostItProxy[]>(
-      apiRoutes.notes.feed
-    );
+  public async getFeedNotes(page: number): Promise<AsyncResult<FeedPostItProxy[]>> {
+    const url = apiRoutes.notes.feed.replace('{page}', page.toString());
+    const [success, error] = await this.http.get<FeedPostItProxy[]>(url);
 
     if (error) return [[], error.error.message];
+    console.log(success);
 
     return [success];
   }
+
+  /**
+   * @param postit
+   * const [success, error] = await this.http.get<FeedPostItProxy[]>(url);
+   */
 
   public async setLikeOnPostit(postit: FeedPostItProxy): Promise<AsyncResult<boolean>> {
     const url = postit.hasLiked
@@ -95,6 +100,18 @@ export class NoteService {
     const [success, error] = await this.http.get<FeedPostItProxy>(url);
 
     if (error) return [null, error.error.message];
+
+    return [success];
+  }
+
+  public async getMyFeedNotes(): Promise<AsyncResult<FeedPostItProxy[]>> {
+    const query = `?filter="userId||$eq||3"`;
+
+    const [success, error] = await this.http.get<FeedPostItProxy[]>(
+      apiRoutes.notes.feed + query,
+    );
+
+    if (error) return [[], error.error.message];
 
     return [success];
   }

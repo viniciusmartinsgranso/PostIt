@@ -1,7 +1,7 @@
 <div class="feed-item" [style.background-color]="postIt.color">
   <header>
     <ion-avatar class="user--avatar">
-      <img [src]="postIt.user?.imageUrl || 'assets/imgs/user/user-example-1.jpg'" />
+      <img [src]="postIt.user?.imageUrl || 'assets/images/user/vini.jpg'" />
     </ion-avatar>
     <div class="user--info">
       <span class="user--info--name">
@@ -29,7 +29,7 @@
       <button type="button"> Publicar </button>
     </div>
     <div class="actions--section">
-      <img src="assets/imgs/postit_comment.svg">
+      <img src="assets/images/comment-icon.svg">
 
       <svg class="heart"
            (click)="setLikeToPostIt()"

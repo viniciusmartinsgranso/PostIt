@@ -12,11 +12,10 @@ import { NoteService } from '../../../services/note.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage {
-
   constructor(
     private readonly modalController: ModalController,
     private readonly note: NoteService,
-    private readonly helper: HelperService
+    private readonly helper: HelperService,
   ) { }
 
   public postItList: PostItProxy[] = [];
@@ -43,6 +42,27 @@ export class HomePage {
     console.log('printout');
   }
 
+  public async openPostItModal(postIt: PostItProxy): Promise<void> {
+    const modal = await this.modalController.create({
+      component: PostItModalComponent,
+      cssClass: 'background-modal',
+      backdropDismiss: true,
+      componentProps: {
+        postIt,
+      },
+    });
+
+    await modal.present();
+
+    modal.onDidDismiss().then(async ({ data }) => {
+      if (data.isDeleted) {
+        this.postItList = this.postItList.filter(
+          (post) => post.id !== data.postit.id,
+        );
+      }
+    });
+  }
+
   public async openNewPostItModal(color: string): Promise<void> {
     const modal = await this.modalController.create({
       mode: 'ios',
@@ -59,26 +79,4 @@ export class HomePage {
       }
     });
   }
-
-  public async openPostItModal(postIt: PostItProxy): Promise<void> {
-    const modal = await this.modalController.create({
-      component: PostItModalComponent,
-      cssClass: 'background-modal',
-      backdropDismiss: true,
-      componentProps: {
-        postIt,
-      },
-    });
-
-    await modal.present();
-
-    modal.onDidDismiss().then(async ({ data }) => {
-      if (data.isDeleted) {
-        this.postItList = this.postItList.filter(
-          (post) => post.id !== data.postit.id
-        );
-      }
-    });
-  }
-
 }

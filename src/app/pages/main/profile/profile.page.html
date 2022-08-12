@@ -5,7 +5,7 @@
         <div class="profile--modal--content--user">
 
           <div class="profile--modal--content--user--pic">
-            <img [src]="user.photoUrl">
+            <img [src]="user?.imageUrl || 'assets/images/user/vini.jpg'">
           </div>
 
           <div class="profile--modal--content--user--menu">
@@ -13,9 +13,9 @@
           </div>
 
           <div class="profile--modal--content--user--labels">
-            <label class="profile--modal--content--user--labels--name">{{ user.name }}</label>
+            <label class="profile--modal--content--user--labels--name">{{ user?.name }}</label>
             <br>
-            <label class="profile--modal--content--user--labels--job">{{ user.job }}</label>
+            <label class="profile--modal--content--user--labels--job">{{ user?.role }}</label>
           </div>
 
         </div>
@@ -27,8 +27,7 @@
 
           <div class="profile--modal--content--posts--my-posts">
             <app-feed-item *ngFor="let posts of postItList"
-                           [postIt]="posts"
-                           [isMyPost]="true">
+                           [postIt]="posts">
             </app-feed-item>
           </div>
 
