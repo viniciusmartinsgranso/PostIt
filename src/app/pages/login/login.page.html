@@ -13,18 +13,17 @@
           <input (keydown.enter)="password.focus()" type="text" class="input-login" [(ngModel)]="loginPayload.email">
           <span>Senha</span>
           <input #password (keydown.enter)="login()" type="password" class="input-login" [(ngModel)]="loginPayload.password">
+
+          <ion-button class="button" [class.disabled]="!canLogin()" (click)="login()">
+            {{ !isLoading ? 'confirmar' : 'carregando...'}}
+            <app-half-circle-spinner
+              *ngIf="isLoading"
+              [animationDuration]="1000"
+              [size]="25"
+              [color]="'#ffffff'"
+            ></app-half-circle-spinner>
+          </ion-button>
         </div>
-
-        <ion-button class="button" [class.disabled]="!canLogin()" (click)="login()">
-          {{ !isLoading ? 'confirmar' : 'carregando...'}}
-          <app-half-circle-spinner
-            *ngIf="isLoading"
-            [animationDuration]="1000"
-            [size]="25"
-            [color]="'#ffffff'"
-          ></app-half-circle-spinner>
-        </ion-button>
-
         <p>Não possui conta? <a (click)="isSignAccount = !isSignAccount">Cadastre-se</a></p>
       </div>
     </ng-container>
