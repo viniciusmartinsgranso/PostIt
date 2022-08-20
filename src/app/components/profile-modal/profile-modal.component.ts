@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ProfileSettingsEnum } from '../../models/enums/profile-settings.enum';
+import { UserProxy } from '../../models/proxies/user.proxy';
 import { HelperService } from '../../services/helper.service';
+import { UpdateUserModalComponent } from '../modals/update-user-modal/update-user-modal.component';
 
 @Component({
   selector: 'app-profile-modal',
@@ -19,6 +21,8 @@ export class ProfileModalComponent implements OnInit {
 
   public profileSettingsEnum: typeof ProfileSettingsEnum = ProfileSettingsEnum;
 
+  public user: UserProxy;
+
   public ngOnInit(): void {}
 
   public async clickConfigList(selectedSettings: ProfileSettingsEnum): Promise<void> {
@@ -30,6 +34,20 @@ export class ProfileModalComponent implements OnInit {
     if(selectedSettings === ProfileSettingsEnum.ABOUT_US){
       return void await this.helper.showToast('Projeto Bootcamp LIGA - 2022', 5_000);
     }
+
+    if(selectedSettings === ProfileSettingsEnum.EDIT_PROFILE) {
+      await this.openEditProfileModal();
+    }
+  }
+
+  public async openEditProfileModal(): Promise<void> {
+    const modal = await this.modalController.create({
+      mode: 'md',
+      component: UpdateUserModalComponent,
+      cssClass: 'background-profile-modal',
+      componentProps: { user: this.user },
+    });
+    await modal.present();
   }
 
 }

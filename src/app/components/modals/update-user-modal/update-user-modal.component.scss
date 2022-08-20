@@ -1,0 +1,33 @@
+:root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.update-profile {
+  width: 90vw;
+  height: 65vh;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(0deg, rgba(20,66,95,1) 26%, rgba(48,141,93,1) 70%);
+
+  &--form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    &--input {
+      background: white;
+      border: 0.1rem solid grey;
+      border-radius: 0.5rem;
+      height: 2.3rem;
+      color: black;
+      padding-left: .5rem;
+      outline: none;
+    }
+  }
+}

@@ -35,7 +35,7 @@ export class ProfilePage implements OnInit {
     this.isLoading = true;
     const [note, message] = await this.noteService.getMyFeedNotes();
 
-    // TODO: IMPLEMENTAR GETME
+    await this.noteService.getMyNotes();
     const success = JSON.parse(localStorage.getItem(environment.keys.user));
     this.isLoading = false;
 
@@ -55,7 +55,7 @@ export class ProfilePage implements OnInit {
     const modal = await this.modalController.create({
       mode: 'md',
       component: ProfileModalComponent,
-      cssClass: 'background-modal',
+      cssClass: 'background-profile-modal',
     });
     await modal.present();
   }

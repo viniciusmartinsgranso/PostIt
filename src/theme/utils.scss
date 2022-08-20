@@ -3,3 +3,17 @@
   //{@link https://forum.ionicframework.com/t/cannot-dismiss-a-modal-by-clicking-the-backdrop-ionic-6/221459}
   --height: 65vh;
 }
+
+.background-profile-modal {
+  --background: transparent;
+  //{@link https://forum.ionicframework.com/t/cannot-dismiss-a-modal-by-clicking-the-backdrop-ionic-6/221459}
+  --height: 100vh;
+}
+
+.background-edit-profile-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 80vh;
+}

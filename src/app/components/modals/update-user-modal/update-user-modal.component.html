@@ -1,0 +1,15 @@
+<div class="update-profile">
+  <h3 style="text-align: center; font-weight: bold">Editar perfil</h3>
+  <div class="update-profile--form">
+    <label>Nome</label>
+    <input class="update-profile--form--input" type="text" [(ngModel)]="user.name"/>
+    <label>Profissão</label>
+    <input class="update-profile--form--input" type="text" [(ngModel)]="user.role"/>
+    <label>E-mail</label>
+    <input class="update-profile--form--input" type="text" [(ngModel)]="user.email"/>
+    <div class="update-profile--form--input--image">
+      <img src="" alt="">
+      <input type="image" [(ngModel)]="user.imageUrl"/>
+    </div>
+  </div>
+</div>

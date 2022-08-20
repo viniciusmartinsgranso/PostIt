@@ -126,4 +126,14 @@ export class NoteService {
 
     return [success];
   }
+
+  public async getMyPublishedNotes(page: number): Promise<AsyncResult<FeedPostItProxy[]>> {
+    const url = apiRoutes.notes.me.replace('{page}', page.toString());
+    const [success, error] = await this.http.get<FeedPostItProxy[]>(url);
+
+    if (error) return [[], error.error.message];
+    console.log(success);
+
+    return [success];
+  }
 }
