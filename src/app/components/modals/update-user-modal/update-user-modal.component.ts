@@ -8,7 +8,8 @@ import { UpdateUserPayload } from '../../../models/payloads/update-user.payload'
 })
 export class UpdateUserModalComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+  ) { }
 
   public user: UpdateUserPayload;
 

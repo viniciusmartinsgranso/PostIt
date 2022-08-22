@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { ProfileSettingsEnum } from '../../models/enums/profile-settings.enum';
 import { UserProxy } from '../../models/proxies/user.proxy';
 import { HelperService } from '../../services/helper.service';
+import { UserService } from '../../services/user.service';
 import { UpdateUserModalComponent } from '../modals/update-user-modal/update-user-modal.component';
 
 @Component({
@@ -21,7 +22,7 @@ export class ProfileModalComponent implements OnInit {
 
   public profileSettingsEnum: typeof ProfileSettingsEnum = ProfileSettingsEnum;
 
-  public user: UserProxy;
+  // public user: UserProxy;
 
   public ngOnInit(): void {}
 
@@ -45,7 +46,6 @@ export class ProfileModalComponent implements OnInit {
       mode: 'md',
       component: UpdateUserModalComponent,
       cssClass: 'background-profile-modal',
-      componentProps: { user: this.user },
     });
     await modal.present();
   }

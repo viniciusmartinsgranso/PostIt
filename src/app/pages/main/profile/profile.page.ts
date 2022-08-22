@@ -22,7 +22,7 @@ export class ProfilePage implements OnInit {
     private readonly noteService: NoteService,
   ) { }
 
-  public postItList: FeedPostItProxy[];
+  public postItList: PostItProxy[];
 
   public user: UserProxy;
 
@@ -33,9 +33,7 @@ export class ProfilePage implements OnInit {
 
   public async ionViewDidEnter(): Promise<void> {
     this.isLoading = true;
-    const [note, message] = await this.noteService.getMyFeedNotes();
-
-    await this.noteService.getMyNotes();
+    const [note, message] = await this.noteService.getMyNotes();
     const success = JSON.parse(localStorage.getItem(environment.keys.user));
     this.isLoading = false;
 
