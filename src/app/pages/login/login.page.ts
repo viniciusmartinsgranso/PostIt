@@ -49,7 +49,6 @@ export class LoginPage {
       return void await this.router.navigate(['/home']);
     }
 
-    // alert
     await this.helperService.showToast(message, 5_000);
   }
 
@@ -63,7 +62,6 @@ export class LoginPage {
     if (isSuccess)
       return void await this.router.navigate(['/home']);
 
-    // alert
     await this.helperService.showToast(message, 5_000);
   }
 

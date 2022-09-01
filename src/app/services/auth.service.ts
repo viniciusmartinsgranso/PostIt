@@ -43,4 +43,11 @@ export class AuthService {
   public getUserTokenFromStorage(): string {
     return localStorage.getItem(environment.keys.token);
   }
+
+  public async getMe(): Promise<AsyncResult<UserProxy>> {
+    const [ success, error ] = await this.http.get<UserProxy>(apiRoutes.users.me);
+    console.log(success);
+    if (error) return [null, error.error.message];
+    return [success];
+  }
 }

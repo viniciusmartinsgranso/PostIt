@@ -1,11 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { environment } from '../../../../environments/environment';
 import { ProfileModalComponent } from '../../../components/profile-modal/profile-modal.component';
-import { PostItColorEnum } from '../../../models/enums/post-it-color.enum';
-import { FeedPostItProxy } from '../../../models/proxies/feed-post-it.proxy';
 import { PostItProxy } from '../../../models/proxies/post-it.proxy';
 import { UserProxy } from '../../../models/proxies/user.proxy';
+import { AuthService } from '../../../services/auth.service';
 import { HelperService } from '../../../services/helper.service';
 import { NoteService } from '../../../services/note.service';
 
@@ -20,6 +19,7 @@ export class ProfilePage implements OnInit {
     private readonly modalController: ModalController,
     private readonly helper: HelperService,
     private readonly noteService: NoteService,
+    private readonly auth: AuthService,
   ) { }
 
   public postItList: PostItProxy[];
@@ -28,25 +28,26 @@ export class ProfilePage implements OnInit {
 
   public isLoading: boolean = false;
 
-  ngOnInit() {
+  public async ngOnInit(): Promise<void> {
   }
 
   public async ionViewDidEnter(): Promise<void> {
     this.isLoading = true;
     const [note, message] = await this.noteService.getMyNotes();
-    const success = JSON.parse(localStorage.getItem(environment.keys.user));
-    this.isLoading = false;
 
-    if (!success) {
+    await this.getUserProfile();
+
+    if (!this.user) {
       await this.helper.showToast('Erro ao carregar usuário.');
     }
 
     if (!note) {
-      return void await this.helper.showToast(message);
+      return void await this.helper.showToast('Hello');
     }
 
     this.postItList = note;
-    this.user = success;
+    // this.user = success;
+    this.isLoading = false;
   }
 
   public async openProfileModal(): Promise<void> {
@@ -54,8 +55,14 @@ export class ProfilePage implements OnInit {
       mode: 'md',
       component: ProfileModalComponent,
       cssClass: 'background-profile-modal',
+      componentProps: { user: this.user }
     });
     await modal.present();
+  }
+
+  public async getUserProfile(): Promise<void> {
+    const [user, message] = await this.auth.getMe();
+    this.user = user;
   }
 
 }

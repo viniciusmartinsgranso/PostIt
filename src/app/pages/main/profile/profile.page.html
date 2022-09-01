@@ -13,9 +13,9 @@
           </div>
 
           <div class="profile--modal--content--user--labels">
-            <label class="profile--modal--content--user--labels--name">{{ user?.name }}</label>
+            <label class="profile--modal--content--user--labels--name">{{ user?.name || 'Vini' }}</label>
             <br>
-            <label class="profile--modal--content--user--labels--job">{{ user?.role }}</label>
+            <label class="profile--modal--content--user--labels--job">{{ user?.role || 'Dev' }}</label>
           </div>
 
         </div>
@@ -26,10 +26,15 @@
           </div>
 
           <div class="profile--modal--content--posts--my-posts">
-            <app-feed-item *ngFor="let posts of postItList"
-                           [postIt]="posts">
-            </app-feed-item>
+            <ng-container *ngIf="!isLoading; else loading">
+              <app-feed-item *ngFor="let posts of postItList"
+                             [postIt]="posts">
+              </app-feed-item>
+            </ng-container>
           </div>
+          <ng-template #loading>
+            <app-half-circle-spinner></app-half-circle-spinner>
+          </ng-template>
 
         </div>
       </div>

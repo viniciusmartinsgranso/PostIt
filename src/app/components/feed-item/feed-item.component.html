@@ -5,10 +5,10 @@
     </ion-avatar>
     <div class="user--info">
       <span class="user--info--name">
-        {{ postIt.user?.name }}
+        {{ postIt.user?.name || 'Vini' }}
       </span>
       <span class="user--info--role">
-        {{ postIt.user?.role }}
+        {{ postIt.user?.role || 'Dev' }}
       </span>
     </div>
     <button class="read--more" type="button" [routerLink]="['/feed', postIt.id]">

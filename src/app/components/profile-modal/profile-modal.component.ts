@@ -22,9 +22,11 @@ export class ProfileModalComponent implements OnInit {
 
   public profileSettingsEnum: typeof ProfileSettingsEnum = ProfileSettingsEnum;
 
-  // public user: UserProxy;
+  public user: UserProxy;
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    console.log(this.user);
+  }
 
   public async clickConfigList(selectedSettings: ProfileSettingsEnum): Promise<void> {
     if (selectedSettings === ProfileSettingsEnum.EXIT) {
@@ -46,6 +48,7 @@ export class ProfileModalComponent implements OnInit {
       mode: 'md',
       component: UpdateUserModalComponent,
       cssClass: 'background-profile-modal',
+      componentProps: { user: this.user }
     });
     await modal.present();
   }

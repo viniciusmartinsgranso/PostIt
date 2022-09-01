@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UpdateUserPayload } from '../../../models/payloads/update-user.payload';
+import { UserProxy } from '../../../models/proxies/user.proxy';
 
 @Component({
   selector: 'app-update-user-modal',
@@ -11,8 +12,9 @@ export class UpdateUserModalComponent implements OnInit {
   constructor(
   ) { }
 
-  public user: UpdateUserPayload;
+  public user: UserProxy;
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
 }

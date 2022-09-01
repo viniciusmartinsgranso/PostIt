@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
+import { HalfCircleSpinnerModule } from 'angular-epic-spinners';
 import { FeedItemModule } from '../../../components/feed-item/feed-item.module';
 import { LogoModule } from '../../../components/logo/logo.module';
 
@@ -17,6 +18,7 @@ import { ProfilePage } from './profile.page';
     IonicModule,
     ProfilePageRoutingModule,
     FeedItemModule,
+    HalfCircleSpinnerModule,
   ],
   declarations: [ProfilePage]
 })
