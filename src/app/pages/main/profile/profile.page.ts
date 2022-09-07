@@ -35,7 +35,8 @@ export class ProfilePage implements OnInit {
     this.isLoading = true;
     const [note, message] = await this.noteService.getMyNotes();
 
-    await this.getUserProfile();
+    const [user, messageGetMe] = await this.auth.getMe();
+    this.user = user;
 
     if (!this.user) {
       await this.helper.showToast('Erro ao carregar usuário.');
@@ -61,8 +62,6 @@ export class ProfilePage implements OnInit {
   }
 
   public async getUserProfile(): Promise<void> {
-    const [user, message] = await this.auth.getMe();
-    this.user = user;
   }
 
 }

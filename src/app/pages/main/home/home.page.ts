@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { PostItModalComponent } from '../../../components/modals/post-it-modal/post-it-modal.component';
 import { PostItColorEnum } from '../../../models/enums/post-it-color.enum';
@@ -16,6 +17,7 @@ export class HomePage {
     private readonly modalController: ModalController,
     private readonly note: NoteService,
     private readonly helper: HelperService,
+    private readonly router: Router,
   ) { }
 
   public postItList: PostItProxy[] = [];
@@ -33,7 +35,11 @@ export class HomePage {
     const [notes, errorMessage] = await this.note.getMyNotes();
     this.isLoading = false;
 
-    if (errorMessage) return this.helper.showToast(errorMessage, 5_000);
+    if (errorMessage) {
+      localStorage.clear();
+      await this.helper.showToast(errorMessage, 5_000);
+      return void await this.router.navigate(['/login']);
+    }
 
     this.postItList = notes;
   }

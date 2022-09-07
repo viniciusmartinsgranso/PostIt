@@ -9,20 +9,27 @@
   &--form {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    gap: 2rem;
 
-    label {
-      margin-top: 1rem;
-      font-weight: bold;
-    }
+    &--div{
+      display: flex;
+      flex-direction: column;;
 
-    &--input {
-      background: white;
-      border: none;
-      border-radius: 0.5rem;
-      height: 2.3rem;
-      color: black;
-      padding-left: .5rem;
-      outline: none;
+      label {
+        margin-top: 1rem;
+        font-weight: bold;
+      }
     }
   }
+}
+
+.profile-input {
+  background: white;
+  border: none;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  color: black;
+  padding-left: .5rem;
+  outline: none;
 }

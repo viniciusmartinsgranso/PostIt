@@ -1,15 +1,22 @@
 <div class="update-profile">
   <h3 style="text-align: center; font-weight: bold">Editar perfil</h3>
   <div class="update-profile--form">
-    <label>Nome</label>
-    <input class="update-profile--form--input" type="text" [(ngModel)]="user.name"/>
-    <label>Profissão</label>
-    <input class="update-profile--form--input" type="text" [(ngModel)]="user.role"/>
-    <label>E-mail</label>
-    <input class="update-profile--form--input" type="text" [(ngModel)]="user.email"/>
-    <div class="update-profile--form--input--image">
-      <img src="" alt="">
-      <input type="image" [(ngModel)]="user.imageUrl"/>
+    <div class="update-profile--form--div">
+      <label>Nome</label>
+      <input class="profile-input" type="text" [(ngModel)]="userPayload.name" [placeholder]="user.name"/>
     </div>
+    <div class="update-profile--form--div">
+      <label>Profissão</label>
+      <input class="profile-input" type="text" [(ngModel)]="userPayload.role" [placeholder]="user.role"/>
+    </div>
+    <div class="update-profile--form--div">
+      <label>E-mail</label>
+      <input class="profile-input" type="text" [(ngModel)]="userPayload.email" [placeholder]="user.email"/>
+    </div>
+<!--    <div class="update-profile&#45;&#45;form&#45;&#45;input&#45;&#45;image">-->
+<!--      <img src="" alt="">-->
+<!--      <input type="image" [(ngModel)]="user.imageUrl"/>-->
+<!--    </div>-->
+    <ion-button (click)="onUpdateUser()">Enviar</ion-button>
   </div>
 </div>

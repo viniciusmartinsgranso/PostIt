@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { apiRoutes } from '../../environments/api-routes';
+import { AsyncResult } from '../models/interfaces/async-result';
+import { UpdateUserPayload } from '../models/payloads/update-user.payload';
+import { PostItProxy } from '../models/proxies/post-it.proxy';
 import { UserProxy } from '../models/proxies/user.proxy';
 import { HttpAsyncService } from '../modules/http-async/services/http-async.service';
 
@@ -32,6 +36,16 @@ export class UserService {
 
   public clearUser(): void {
     this.userSubject.next(null);
+  }
+
+  public async updateUser(id: number, payload: UpdateUserPayload): Promise<AsyncResult<UserProxy>> {
+    const url = apiRoutes.users.update.replace('{id}', String(id));
+
+    const [success, error] = await this.http.put<UserProxy>(url, payload);
+
+    if (error) return [null, error.error.message];
+
+    return [success];
   }
 
 }

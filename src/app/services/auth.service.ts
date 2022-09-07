@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { CreateUserPayload } from '../models/payloads/register.payload';
 import { HttpAsyncService } from '../modules/http-async/services/http-async.service';
 import { TokenProxy } from '../models/proxies/token.proxy';
@@ -11,7 +12,10 @@ import { UserProxy } from '../models/proxies/user.proxy';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private readonly http: HttpAsyncService) {}
+  constructor(
+    private readonly http: HttpAsyncService,
+    private readonly router: Router,
+  ) {}
 
   public async login(username: string, password: string): Promise<AsyncResult<boolean>> {
     const [token, error] = await this.http.post<TokenProxy>(apiRoutes.auth.login, {

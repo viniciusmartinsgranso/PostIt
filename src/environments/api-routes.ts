@@ -20,5 +20,6 @@ export const apiRoutes = {
   users: {
     create: '/user',
     me: '/user/me',
+    update: '/user/{id}',
   },
 } as const;

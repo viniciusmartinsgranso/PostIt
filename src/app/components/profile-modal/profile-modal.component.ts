@@ -25,7 +25,6 @@ export class ProfileModalComponent implements OnInit {
   public user: UserProxy;
 
   public ngOnInit(): void {
-    console.log(this.user);
   }
 
   public async clickConfigList(selectedSettings: ProfileSettingsEnum): Promise<void> {
@@ -39,16 +38,16 @@ export class ProfileModalComponent implements OnInit {
     }
 
     if(selectedSettings === ProfileSettingsEnum.EDIT_PROFILE) {
-      await this.openEditProfileModal();
+      await this.openEditProfileModal(this.user);
     }
   }
 
-  public async openEditProfileModal(): Promise<void> {
+  public async openEditProfileModal(user: UserProxy): Promise<void> {
     const modal = await this.modalController.create({
       mode: 'md',
       component: UpdateUserModalComponent,
       cssClass: 'background-profile-modal',
-      componentProps: { user: this.user }
+      componentProps: { user }
     });
     await modal.present();
   }

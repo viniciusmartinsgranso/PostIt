@@ -47,6 +47,9 @@ export class LoginPage {
 
     if (isSuccess) {
       return void await this.router.navigate(['/home']);
+    } else {
+      await this.helperService.showToast(message);
+      return void await this.router.navigate(['/login']);
     }
 
     await this.helperService.showToast(message, 5_000);
