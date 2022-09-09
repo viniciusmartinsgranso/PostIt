@@ -1,17 +1,20 @@
 <div class="update-profile">
-  <h3 style="text-align: center; font-weight: bold">Editar perfil</h3>
+  <div class="update-profile--menu">
+    <h3>Editar perfil</h3>
+    <h3 (click)="modalController.dismiss()" >X</h3>
+  </div>
   <div class="update-profile--form">
     <div class="update-profile--form--div">
       <label>Nome</label>
-      <input class="profile-input" type="text" [(ngModel)]="userPayload.name" [placeholder]="user.name"/>
+      <input class="profile-input" type="text" (input)="fill('name', $event.target)" [value]="user.name"/>
     </div>
     <div class="update-profile--form--div">
       <label>Profissão</label>
-      <input class="profile-input" type="text" [(ngModel)]="userPayload.role" [placeholder]="user.role"/>
+      <input class="profile-input" type="text" (input)="fill('role', $event.target)" [value]="user.role"/>
     </div>
     <div class="update-profile--form--div">
       <label>E-mail</label>
-      <input class="profile-input" type="text" [(ngModel)]="userPayload.email" [placeholder]="user.email"/>
+      <input class="profile-input" type="text" (input)="fill('email', $event.target)" [value]="user.email"/>
     </div>
 <!--    <div class="update-profile&#45;&#45;form&#45;&#45;input&#45;&#45;image">-->
 <!--      <img src="" alt="">-->

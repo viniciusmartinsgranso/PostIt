@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { UpdateUserPayload } from '../../../models/payloads/update-user.payload';
 import { UserProxy } from '../../../models/proxies/user.proxy';
@@ -16,6 +16,7 @@ export class UpdateUserModalComponent {
     private readonly modalController: ModalController,
   ) { }
 
+  @Input()
   public user: UserProxy;
 
   public userPayload: UpdateUserPayload = {
@@ -25,7 +26,15 @@ export class UpdateUserModalComponent {
     role: '',
   };
 
+  public fill(field: string, element: any): void {
+    this.user[field] = element.value;
+  }
+
   public async onUpdateUser(): Promise<void> {
+    this.userPayload.name = this.user.name;
+    this.userPayload.email = this.user.email;
+    this.userPayload.role = this.user.role;
+    this.userPayload.imageUrl = this.user.imageUrl;
     console.log(this.userPayload);
     await this.userService.updateUser(this.user.id, this.userPayload);
     await this.modalController.dismiss();

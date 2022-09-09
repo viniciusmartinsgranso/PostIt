@@ -33,7 +33,6 @@ export class HomePage {
   public async loadMyNotes(): Promise<void> {
     this.isLoading = true;
     const [notes, errorMessage] = await this.note.getMyNotes();
-    this.isLoading = false;
 
     if (errorMessage) {
       localStorage.clear();
@@ -41,6 +40,7 @@ export class HomePage {
       return void await this.router.navigate(['/login']);
     }
 
+    this.isLoading = false;
     this.postItList = notes;
   }
 

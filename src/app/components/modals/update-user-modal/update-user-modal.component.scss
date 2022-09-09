@@ -1,10 +1,21 @@
 .update-profile {
+  box-shadow: 0 0 .6rem #4d4d4d;
   width: 90vw;
   height: 65vh;
   border-radius: 1rem;
   padding: 1.5rem;
-  background: linear-gradient(0deg, rgb(57 115 151) 26%, rgb(81 177 127) 70%);
+  background: white;
   margin: auto;
+  color: #707070;
+
+  &--menu {
+
+    h3 {
+      text-align: center;
+      font-weight: bold
+    }
+  }
+
 
   &--form {
     display: flex;
@@ -28,6 +39,7 @@
   background: white;
   border: none;
   border-radius: 0.5rem;
+  box-shadow: 0 0 0.1rem #4d4d4d;
   height: 2.3rem;
   color: black;
   padding-left: .5rem;
